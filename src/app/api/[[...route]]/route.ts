@@ -4,6 +4,7 @@ import { csrf } from "hono/csrf";
 import { logger } from "hono/logger";
 import { secureHeaders } from "hono/secure-headers";
 import { handle } from "hono/vercel";
+import { router as gmail } from "./gmail";
 
 export const runtime = "edge";
 
@@ -19,6 +20,8 @@ app.get("/hello", (c) => {
 		message: "Hello Next.js!",
 	});
 });
+
+app.route("/gmail", gmail);
 
 export const GET = handle(app);
 export const POST = handle(app);
